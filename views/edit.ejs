@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -6,138 +6,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
     <style>
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Roboto", sans-serif;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Arial", sans-serif;
+        }
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+        body {
+            background-color: #0d1117; 
+            color: #c9d1d9; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-body {
-    background-color: #f4f6f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
+        
+        .main {
+            width: 100%;
+            max-width: 600px;
+            background-color: #161b22; 
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
 
-.main {
-    width: 100%;
-    max-width: 600px;
-    padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
+        .to-do-list h2 {
+            font-size: 2rem;
+            color: #58a6ff;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #30363d; 
+            padding-bottom: 10px;
+        }
 
-.todo-list {
-    width: 100%;
-}
+        
 
-.todo-list h2 {
-    font-size: 1.8rem;
-    color: #333;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid #e6e6e6;
-    padding-bottom: 10px;
-}
+        .form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
 
-.todo-list h2 img {
-    width: 25px;
-}
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #30363d; 
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #c9d1d9;
+            background-color: #0d1117; 
+            transition: border 0.3s ease;
+        }
 
-.form {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 20px;
-}
+        input[type="text"]:focus {
+            border-color: #58a6ff;
+            background-color: #161b22;
+        }
 
-input[type="text"] {
-    width: 100%;
-    padding: 10px 15px;
-    border: 2px solid #e6e6e6;
-    border-radius: 4px;
-    font-size: 1rem;
-    color: #333;
-    background-color: #f9f9f9;
-    transition: border 0.3s ease;
-}
+        button {
+            padding: 12px 30px;
+            font-size: 1rem;
+            color: #fff;
+            background-color:#1e88e5; 
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
 
-input[type="text"]:focus {
-    border-color: #007bff;
-    background-color: #fff;
-}
+        button:hover {
+            background-color:#1e88e5; 
+            transform: scale(1.05); 
+        }
 
-.sub-btn {
-    display: flex;
-    justify-content: flex-end;
-}
+        button:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px #1e88e5(34, 197, 94, 0.5); 
+        }
 
-button {
-    padding: 12px 30px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+        @media (max-width: 768px) {
+            .main {
+                padding: 20px;
+            }
 
-button:hover {
-    background-color: #0056b3;
-}
+            .form {
+                flex-direction: column;
+            }
 
-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
-}
+            input[type="text"] {
+                margin-bottom: 15px;
+            }
 
-@media (max-width: 768px) {
-    .main {
-        padding: 15px;
-    }
+            button {
+                width: 100%;
+            }
+        }
 
-    .form {
-        flex-direction: column;
-    }
-
-    input[type="text"] {
-        margin-bottom: 10px;
-    }
-
-    button {
-        width: 100%;
-        padding: 12px;
-    }
-}
-</style>
+    </style>
 </head>
 
 <body>
     <div class="main">
-        <div class="todo-list">
-            <h2>To-Do List<img src="/images/pencil.png"></h2>
-            <form action="/insertData" method="post">
+        <div class="to-do-list">
+            <h2>To-Do List</h2>
+            <form action="/insertdata" method="post">
                 <div class="form">
-                    <input type="text" name="id" placeholder="Sr no."value="<%= data.id %>" disabled>
-                    <input type="hidden" name="editId" placeholder="Sr no." value="<%= data.id %>">
-                </div>
-                <div class="form">
-                    <input type="text" name="task" placeholder="Add Your Task" value="<%= data.task %>">
-                </div>
-                <div class="sub-btn">
-                    <button type="submit">Update</button>
+                    <input type="text" name="task" placeholder="add task" value="<%= data.task %>">
+                    <input type="hidden" name="editid" placeholder="No." value="<%= data.id %>">
+                    <button type="submit">edit</button>
                 </div>
             </form>
         </div>
     </div>
-    </section>
 </body>
 
-</html> 
+</html>

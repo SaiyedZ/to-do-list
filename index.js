@@ -18,11 +18,11 @@ app.get('/', (req, res) => {
     });
 })
 
-app.post('/insertData',(req,res)=>{
-    let {id,task,editId}= req.body
-    if (editId) {
+app.post('/insertdata',(req,res)=>{
+    let {id,task,editid}= req.body
+    if (editid) {
         let data = lists.map((val) => {
-            if (val.id == editId) {
+            if (val.id == editid) {
                 val.task = task;
             }
             return val;
@@ -36,7 +36,7 @@ app.post('/insertData',(req,res)=>{
     return res.redirect('/');
 })
 
-app.get('/deleteData/:id', (req, res) => {
+app.get('/deletedata/:id', (req, res) => {
     let { id } = req.params;
     console.log(id);
     let data = lists.filter((list) => {
@@ -46,7 +46,7 @@ app.get('/deleteData/:id', (req, res) => {
     return res.redirect('/');
 })
 
-app.get('/editData/:id', (req, res) => {
+app.get('/editdata/:id', (req, res) => {
     let { id } = req.params;
     console.log(id);
     let data = lists.filter((list) => {
