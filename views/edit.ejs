@@ -1,0 +1,143 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    }
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+body {
+    background-color: #f4f6f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.main {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.todo-list {
+    width: 100%;
+}
+
+.todo-list h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #e6e6e6;
+    padding-bottom: 10px;
+}
+
+.todo-list h2 img {
+    width: 25px;
+}
+
+.form {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px 15px;
+    border: 2px solid #e6e6e6;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #333;
+    background-color: #f9f9f9;
+    transition: border 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #007bff;
+    background-color: #fff;
+}
+
+.sub-btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+button {
+    padding: 12px 30px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+    .main {
+        padding: 15px;
+    }
+
+    .form {
+        flex-direction: column;
+    }
+
+    input[type="text"] {
+        margin-bottom: 10px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="todo-list">
+            <h2>To-Do List<img src="/images/pencil.png"></h2>
+            <form action="/insertData" method="post">
+                <div class="form">
+                    <input type="text" name="id" placeholder="Sr no."value="<%= data.id %>" disabled>
+                    <input type="hidden" name="editId" placeholder="Sr no." value="<%= data.id %>">
+                </div>
+                <div class="form">
+                    <input type="text" name="task" placeholder="Add Your Task" value="<%= data.task %>">
+                </div>
+                <div class="sub-btn">
+                    <button type="submit">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </section>
+</body>
+
+</html> 

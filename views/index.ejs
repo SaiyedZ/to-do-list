@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            background-color: #1f1f1f;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #2c2c2c;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #00aaff;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background-color: #00aaff;
+            display: block;
+            margin: 10px auto 0;
+        }
+
+        .form-group {
+            display: flex;
+            background-color: #3c3c3c;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-group input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1rem;
+            padding: 10px;
+        }
+
+        .form-group input::placeholder {
+            color: #aaaaaa;
+        }
+
+        .form-group:focus-within {
+            background-color: #4a4a4a;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #00aaff;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #0088cc;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        table th, table td {
+            padding: 15px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        table th {
+            background-color: #00aaff;
+            color: #ffffff;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #333333;
+        }
+
+        table tr:hover {
+            background-color: #444444;
+        }
+
+        table td {
+            background-color: #2c2c2c;
+            color: #ffffff;
+        }
+
+        table td a {
+            margin: 0 10px;
+            color: #00aaff;
+            transition: transform 0.3s ease;
+        }
+
+        table td a:hover {
+            transform: scale(1.1);
+        }
+
+        table td img {
+            width: 20px;
+        }
+
+        /* Media Queries for smaller devices */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .form-group input {
+                font-size: 0.9rem;
+            }
+
+            .submit-btn {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+
+            table th, table td {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>To-Do List</h2>
+        <form action="/insertData" method="post">
+            <div class="form-group">
+                <input type="text" name="id" placeholder="Sr no.">
+
+            </div>
+            <div class="form-group">
+                <input type="text" name="task" placeholder="Add Your Task">
+            </div>
+            <button type="submit" class="submit-btn">Add</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sr no.</th>
+                    <th>Task</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% lists.map((val)=>{ %>
+                    <tr>
+                        <td><%= val.id %></td>
+                        <td><%= val.task %></td>
+                        <td>
+                            <a href="/deleteData/<%= val.id %>"><img src="/images/bin7.png" alt="Delete"></a>
+                            <a href="/editData/<%= val.id %>"><img src="/images/pen.png" alt="Edit"></a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+
